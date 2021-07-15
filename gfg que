@@ -32,3 +32,231 @@ int main() {
 	// your code goes here
 	return 0;
 }
+///////
+
+
+
+
+
+2. maximum differnce.
+
+#include <iostream>
+using namespace std;
+int maxdiff(int arr[] ,int n){
+  int minval =arr[0];
+  int res= arr[1]-arr[0];
+  for(int i=0;i<n;i++){
+      res = max(res , arr[i] - minval);
+      minval = min(minval ,arr[i]);
+  }
+  return res;
+  
+}
+
+int main() {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<maxdiff(arr,n);
+    // 
+	// your code goes here
+	return 0;
+}
+
+
+//////////
+
+3 . buy and sell
+
+#include <iostream>
+using namespace std;
+int prof(int arr[] ,int n){
+int profit = 0;
+for(int i=1;i<n;i++){
+    if(arr[i] >arr[i-1]){
+        profit += arr[i] - arr[i-1];
+    }
+}
+  return profit;
+}
+
+int main() {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<prof(arr,n);
+    // 
+	// your code goes here
+	return 0;
+}
+/////
+4 Rainwater trapping
+#include <iostream>
+using namespace std;
+int prof(int arr[] ,int n){
+   int res = 0;
+   int left[n];
+   int right[n];
+   left[0] =arr[0];
+   for(int i=1;i<n;i++){
+       left[i] = max(left[i-1] , arr[i]);
+   }
+
+     right[n-1] =arr[n-1];
+   for(int i=n-2;i>=0;i--){
+       right[i] = max(right[i+1] , arr[i]);
+   }
+    for(int i=0;i<n;i++){
+        res += min(left[i],right[i]) - arr[i];
+    }
+    return res;
+}
+
+int main() {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<prof(arr,n);
+    // 
+	// your code goes here
+	return 0;
+}
+
+
+/////
+
+
+
+5. maximum consecutive 1 in bINARY ARRAY
+
+
+
+#include <iostream>
+using namespace std;
+int prof(int arr[] ,int n){
+  int curr=0;
+  int res = 0;
+  for(int i=0;i<n;i++){
+      if(arr[i] == 1){
+          curr++;
+          res = max(res,curr);
+      }
+      else{
+          curr = 0;
+      }
+  }
+  return res;
+}
+
+int main() {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<prof(arr,n);
+   
+	return 0;
+}
+
+
+
+
+
+
+
+////
+6 Kadane's ALGO
+
+
+
+
+
+#include <iostream>
+#include<climits>
+using namespace std;
+int kadan(int arr[] ,int n){
+int maxi = INT_MIN;
+int sum=0;
+for(int i=0;i<n;i++)
+{   
+    sum = sum+arr[i];
+     maxi = max(sum , maxi);
+
+
+    if(sum <0)
+    {sum=0;
+}
+    
+}
+return maxi;
+    
+}
+
+int main() {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<kadan(arr,n);
+   
+	return 0;
+}
+
+
+
+
+
+
+///////////////////
+7 . Maximum length of even odd;
+
+
+#include <iostream>
+#include<climits>
+using namespace std;
+int evenOdd(int arr[] ,int n){
+int count = 1;
+int res=1;
+for(int i=0;i<n;i++){
+    if(arr[i]%2 == 0  && arr[i-1]%2 == 0   || arr[i]%2 !=0 && arr[i-1]%2 !=0)
+    {count++;
+    res = max(res , count);
+}
+else{
+    count = 1;
+}
+
+}
+return res;
+    
+}
+
+
+int main() {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<evenOdd(arr,n);
+   
+	return 0;
+}
+
+
+
+
