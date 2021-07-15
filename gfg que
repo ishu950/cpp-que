@@ -260,3 +260,114 @@ int main() {
 
 
 
+//////////////////
+
+8 Maximum circular subarray sum
+#include <iostream>
+#include<climits>
+#include<bits/stdc++.h>
+using namespace std;
+int kadane(int arr[] ,int n){
+int sum =0;
+int res =INT_MIN;
+for(int i=0;i<n;i++){
+    sum=sum+arr[i];
+    res = max(res , sum);
+    if(sum < 0){
+        sum=0;
+    }
+}
+return res;
+}
+int wrapsum(int arr[] ,int n){
+      
+    
+    int total=0;
+    int wrpsum=0;
+    
+    int non_wrapsum = kadane(arr,n);
+    // if(non_wrapsum <0)
+    // return non_wrapsum;
+    
+    for(int i=0;i<n;i++){
+        total = total + arr[i];
+        arr[i] = - arr[i];
+    }
+    wrpsum = total + kadane(arr,n);
+return max(wrpsum ,non_wrapsum);
+    
+}
+
+
+
+
+
+
+int main() {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+  cout<<wrapsum(arr,n);
+   
+	return 0;
+}
+
+
+
+
+
+
+9 -   Majority elements
+
+
+#include <iostream>
+#include<climits>
+#include<bits/stdc++.h>
+using namespace std;
+int findmax(int arr[],int n){
+    int count = 1;
+    int res = 0;
+    for(int i=0;i<n;i++){
+        if(arr[count] == arr[i]){
+            count++;
+        }
+        else{
+            count--;
+        }
+        
+        if(count == 0){
+            count =1;
+            res =i;
+        }
+    }
+
+
+
+count =0;
+for(int i=0;i<n;i++){
+    if(arr[res] == arr[i])
+    count++;
+}
+if(count > n/2){
+    cout<<arr[res];
+}    
+return -1;    
+    
+    
+
+}
+
+int main() {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+ findmax(arr,n);
+   
+	return 0;
+}
